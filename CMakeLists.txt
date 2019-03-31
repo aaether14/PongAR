@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.12)
 
-project(videopanzer)
+project(PongAR)
 
 add_compile_options(-std=c++11)
 
@@ -17,8 +17,14 @@ qt5_wrap_ui(
     client.ui
 )
 
+include_directories(Externals/opencv/include)
+
+if (UNIX)
+    link_directories(Externals/opencv/libs/ubuntu16.04)
+endif()
+
 add_executable(
-    videopanzer
+    PongAR
     main.cpp
     client.cpp
     client.h
@@ -26,11 +32,32 @@ add_executable(
     cameraframegrabber.h
     camerahandler.cpp
     camerahandler.h
+    imageutils.h
+    imageutils.cpp
     ${ui_files}
 )
 
+if (UNIX)
+    target_link_libraries(
+        PongAR
+        libopencv_world.a
+        libippiw.a
+        libippicv.a
+        libittnotify.a
+        libIlmImf.a
+        liblibwebp.a
+        -lpng
+        -ljpeg
+        -ltiff
+        -ljasper
+        -lpthread
+        -lz
+        -ldl
+    )
+endif()
+
 target_link_libraries(
-    videopanzer
+    PongAR
     Qt5::Core
     Qt5::Widgets
     Qt5::Multimedia
