@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QMainWindow>
+#include <opencv2/objdetect.hpp>
 
 namespace Ui 
 {
@@ -20,4 +21,5 @@ private:
     class QCamera* m_camera = nullptr;
     class QVBoxLayout* m_verticalLayout = nullptr;
     class CameraFrameGrabber* m_cameraFrameGrabber = nullptr;
+    cv::CascadeClassifier m_cascadeClassifier;
 };
