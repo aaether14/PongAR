@@ -1,7 +1,6 @@
 #pragma once
 
 #include <QWidget>
-#include <QPixmap>
 
 class CameraHandler : public QWidget
 {
@@ -11,13 +10,13 @@ public:
     explicit CameraHandler(QWidget* parent = nullptr);
     virtual ~CameraHandler() override;
 
-    void setPixmap(const QPixmap& pixmap);
-    const QPixmap& pixmap() const;
+    void setImage(const QImage& image);
+    const QImage& image() const;
 
     void setHandRects(const QVector<QRect>& handRects);
 
 private:
-    QPixmap m_pixmap;
+    QImage m_image;
     QVector<QRect> m_handRects;
 
 protected:

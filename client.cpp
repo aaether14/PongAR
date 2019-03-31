@@ -16,7 +16,7 @@ ClientMainWindow::ClientMainWindow(QWidget* parent) :
 {
     ui->setupUi(this);
     connect(m_cameraFrameGrabber, &CameraFrameGrabber::frameAvailable, [this](const QImage& image){
-        ui->mainCameraHandler->setPixmap(QPixmap::fromImage(image));
+        ui->mainCameraHandler->setImage(image);
         cv::Mat cvImage = QImageToMat(image);
         std::vector<cv::Rect> handPositions = detectHand(cvImage, m_cascadeClassifier);
         QVector<QRect> handRects;

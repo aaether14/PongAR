@@ -16,21 +16,21 @@ void CameraHandler::setHandRects(const QVector<QRect>& handRects)
     m_handRects = handRects;
 }
 
-void CameraHandler::setPixmap(const QPixmap& pixmap)
+void CameraHandler::setImage(const QImage& image)
 {
-    m_pixmap = pixmap;
+    m_image = image;
     update();
 }
 
-const QPixmap& CameraHandler::pixmap() const
+const QImage& CameraHandler::image() const
 {
-    return m_pixmap;
+    return m_image;
 }
 
 void CameraHandler::paintEvent(QPaintEvent* event)
 {
     Q_UNUSED(event)
     QPainter painter(this);
-    painter.drawPixmap(rect(), m_pixmap);
+    painter.drawImage(rect(), m_image);
     painter.drawRects(m_handRects);
 }
