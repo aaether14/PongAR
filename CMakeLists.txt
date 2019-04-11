@@ -8,13 +8,14 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 
 find_package(Qt5Core)
-find_package(Qt5Widgets)
+find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Multimedia)
 find_package(Qt5MultimediaWidgets)
 
 qt5_wrap_ui(
     ui_files
     client.ui
+    mainwindow.ui
 )
 
 include_directories(Externals/opencv/include)
@@ -26,6 +27,8 @@ endif()
 add_executable(
     PongAR
     main.cpp
+    ball.h
+    ball.cpp
     client.cpp
     client.h
     cameraframegrabber.cpp
@@ -34,6 +37,12 @@ add_executable(
     camerahandler.h
     imageutils.h
     imageutils.cpp
+    mainwindow.h
+    mainwindow.cpp
+    paddle.h
+    paddle.cpp
+    paddleai.h
+    paddleai.cpp
     ${ui_files}
 )
 

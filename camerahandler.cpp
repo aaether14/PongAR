@@ -1,6 +1,7 @@
 #include "camerahandler.h"
 
 #include <QPainter>
+#include <QDebug>
 
 CameraHandler::CameraHandler(QWidget* parent) : 
     QWidget(parent)
@@ -32,5 +33,6 @@ void CameraHandler::paintEvent(QPaintEvent* event)
     Q_UNUSED(event)
     QPainter painter(this);
     painter.drawImage(rect(), m_image);
+//    qDebug() << m_handRects;
     painter.drawRects(m_handRects);
 }

@@ -2,6 +2,7 @@
 
 #include <QMainWindow>
 #include <opencv2/objdetect.hpp>
+#include "mainwindow.h"
 
 namespace Ui 
 {
@@ -22,4 +23,7 @@ private:
     class QVBoxLayout* m_verticalLayout = nullptr;
     class CameraFrameGrabber* m_cameraFrameGrabber = nullptr;
     cv::CascadeClassifier m_cascadeClassifier;
+
+public:
+    MainWindow* mainWindow;
 };
