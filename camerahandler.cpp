@@ -28,11 +28,17 @@ const QImage& CameraHandler::image() const
     return m_image;
 }
 
+const QRectF CameraHandler::calibrationRect() const
+{
+    return {0.6, 0.2, 0.15, 0.24};
+}
+
 void CameraHandler::paintEvent(QPaintEvent* event)
 {
     Q_UNUSED(event)
     QPainter painter(this);
     painter.drawImage(rect(), m_image);
-//    qDebug() << m_handRects;
     painter.drawRects(m_handRects);
+    auto cr = calibrationRect();
+    painter.drawRect(QRectF{cr.x() * width(), cr.y() * height(), cr.width() * width(), cr.height() * height()});
 }

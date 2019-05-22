@@ -15,6 +15,8 @@ public:
 
     void setHandRects(const QVector<QRect>& handRects);
 
+    const QRectF calibrationRect() const;
+
 private:
     QImage m_image;
     QVector<QRect> m_handRects;

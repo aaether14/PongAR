@@ -49,7 +49,6 @@ void Paddle::updateSpeeedFromHandRects(const QVector<QRect>& rects){
     }
     mean /= rects.length();
     setSpeed(mean - position.x());
-    qDebug() << mean - position.x();
 
 //USE THIS TO MOVE THE PADDLE WITH THE MOUSE. IT WORKS WELL
 

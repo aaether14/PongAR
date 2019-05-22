@@ -1,3 +1,0 @@
-# Hashes of file build rules.
-661bc5c9e4600859d7ef6e53a80e10b4 CMakeFiles/PongAR_autogen
-4e2551fb913681693ee38a2edeea10e8 ui_client.h

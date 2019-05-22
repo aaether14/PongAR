@@ -1,4 +1,0 @@
-/home/horatiu/PongAR/build-dir/CMakeFiles/rebuild_cache.dir
-/home/horatiu/PongAR/build-dir/CMakeFiles/PongAR.dir
-/home/horatiu/PongAR/build-dir/CMakeFiles/edit_cache.dir
-/home/horatiu/PongAR/build-dir/CMakeFiles/PongAR_autogen.dir

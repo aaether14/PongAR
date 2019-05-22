@@ -1,8 +1,8 @@
 #pragma once
 
 #include <QMainWindow>
-#include <opencv2/objdetect.hpp>
 #include "mainwindow.h"
+#include "imageutils.h"
 
 namespace Ui 
 {
@@ -22,8 +22,18 @@ private:
     class QCamera* m_camera = nullptr;
     class QVBoxLayout* m_verticalLayout = nullptr;
     class CameraFrameGrabber* m_cameraFrameGrabber = nullptr;
-    cv::CascadeClassifier m_cascadeClassifier;
+
+private slots:
+    void onNewFrame(const QImage& image);
 
 public:
     MainWindow* mainWindow;
+    bool m_isSamplingForCalibration = false;
+    std::vector<cv::Mat> m_calibrationSampleFrames = {};
+    cv::Mat m_handHistogram;
+
+protected:
+    virtual void keyPressEvent(QKeyEvent* event) override;
+    virtual void keyReleaseEvent(QKeyEvent* event) override;
+
 };
