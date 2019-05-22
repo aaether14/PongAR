@@ -23,6 +23,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void setHandRects(const QVector<QRect>& rects);
+    void updatePlayerX(float x);
 
 public slots:
     void paintEvent(QPaintEvent* event);

@@ -35,6 +35,12 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::updatePlayerX(float x)
+{
+    auto p = playerPaddle->getPosition();
+    playerPaddle->setPosition({x * width(), p.y()});
+}
+
 void MainWindow::nextFrame(){
     playerPaddle->update();
     playerPaddle->updateSpeeedFromHandRects(handRects);

@@ -52,10 +52,33 @@ cv::Mat histogramMasking(cv::Mat image, cv::Mat histogram)
     cv::threshold(filteredProjection, threshold, 150, 255, cv::THRESH_BINARY);
     cv::Mat rect = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(5, 5));
     cv::morphologyEx(threshold, result, cv::MORPH_CLOSE, rect, cv::Point(-1, -1), 7);
+    std::vector<cv::Mat> mergable = {result, result, result};
+    cv::merge(mergable, result);
     return result;
 }
 
-cv::Mat backgroundSubstraction(cv::Mat image)
+cv::Mat backgroundSubstractionMasking(cv::Mat image, cv::Ptr<cv::BackgroundSubtractor> backgroundSubstractor)
 {
+    cv::Mat mask, result;
+    backgroundSubstractor->apply(image, mask, 0.0);
+    cv::Mat rect = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(4, 4));
+    cv::morphologyEx(mask, result, cv::MORPH_OPEN, rect, cv::Point(-1, -1), 2);
+    cv::morphologyEx(result, result, cv::MORPH_CLOSE, rect, cv::Point(-1, -1), 2);
+    return result;
+}
 
+cv::Point2f movementScore(cv::Mat mask)
+{
+    cv::Point2f result(0, 0);
+    int whiteDots = 0;
+    for (int i = 0; i < mask.rows; ++i) {
+        for (int j = 0; j < mask.cols; ++j) {
+            cv::Scalar cColour = mask.at<uchar>(cv::Point(j, i));
+            if (cColour.val[0] == 255) {
+                ++whiteDots;
+                result += cv::Point2f(j, i);
+            }
+        }
+    }
+    return result / whiteDots;
 }

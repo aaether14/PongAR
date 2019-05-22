@@ -11,3 +11,5 @@ QRect cvRectToQRect(const cv::Rect& rect);
 
 cv::Mat histogramMasking(cv::Mat image, cv::Mat histogram);
 cv::Mat computeHandHistogram(std::vector<cv::Mat> sampleFrames);
+cv::Mat backgroundSubstractionMasking(cv::Mat image, cv::Ptr<cv::BackgroundSubtractor> backgroundSubstractor);
+cv::Point2f movementScore(cv::Mat mask);

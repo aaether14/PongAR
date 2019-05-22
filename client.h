@@ -30,7 +30,8 @@ public:
     MainWindow* mainWindow;
     bool m_isSamplingForCalibration = false;
     std::vector<cv::Mat> m_calibrationSampleFrames = {};
-    cv::Mat m_handHistogram;
+    cv::Mat m_handHistogram = {};
+    cv::Ptr<cv::BackgroundSubtractor> m_backgroundSubstractor = {};
 
 protected:
     virtual void keyPressEvent(QKeyEvent* event) override;
